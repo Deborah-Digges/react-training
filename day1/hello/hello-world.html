@@ -8,6 +8,10 @@
         <div id="root"></div>
         <div id="message"></div>
         <script type="text/jsx">
+            function doSomething() {
+                console.log("button clicked");
+            }
+
             // This syntax is not valid javascript
             // This is JSX - Javascript XML
             // Create HTML elements and assign them to variables
@@ -15,7 +19,7 @@
             // Takes non-JS syntax like JSX and converts it to valid JS
             // which the browser can run
             let hello = <h1>Hello React</h1>
-            let button = <button type="button">Click me!</button>
+            let button = <button type="button" onClick={doSomething}>Click me!</button>
                 
             ReactDOM.render(hello, document.getElementById("message"))
             ReactDOM.render(button, document.getElementById("root"))
