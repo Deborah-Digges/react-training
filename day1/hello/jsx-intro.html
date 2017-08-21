@@ -18,7 +18,13 @@
                 <input type="text"></input>
                 <input type="text"></input>
             </div>
+        // Curly brace is used to write simple javascript inside JSX
+        var message = <h1>{new Date().toDateString()}</h1>
+        
+        ReactDOM.render(message, document.getElementById("root"))
         </script>
+        
+        
         
     </body>
 </html>
