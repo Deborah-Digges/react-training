@@ -5,6 +5,7 @@
         <script src="../lib/react-dom.js"></script>
     </head>
     <body>
+        <div id="root"></div>
         <div id="message"></div>
         <script type="text/jsx">
             // This syntax is not valid javascript
@@ -14,9 +15,10 @@
             // Takes non-JS syntax like JSX and converts it to valid JS
             // which the browser can run
             let hello = <h1>Hello React</h1>
-            let tb = <input type="text"></input>
+            let button = <button type="button">Click me!</button>
                 
             ReactDOM.render(hello, document.getElementById("message"))
+            ReactDOM.render(button, document.getElementById("root"))
         </script>
     </body>
 </html>
