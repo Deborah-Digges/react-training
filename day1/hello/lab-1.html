@@ -12,5 +12,32 @@
         <script src="../lib/react-dom.js"></script>
     </head>
     <body>
+        <div id="root"></div>
+        
+        <script type="text/jsx">
+            function checkLogin() {
+                let userName = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+
+                let message = "";
+                if(userName === "admin" && password === "admin") {
+                    message = <p style={{color: "green"}}>Successfully Logged in</p>;
+                } else {
+                    message = <p style={{color: "red"}}>Invalid Credentials</p>;
+                }
+                
+                ReactDOM.render(message, document.getElementById("root"));
+            }
+
+            let loginForm = (<div>
+                    <input type="text" id="username" placeholder="username"></input> <br/>
+                    <input type="password" id="password" placeholder="password"></input> <br/>
+                    <button type="button" onClick={checkLogin}>Login</button> <br/>
+            </div>);
+                
+            ReactDOM.render(loginForm, document.getElementById("root"));
+
+
+        </script>
     </body>
 </html>
