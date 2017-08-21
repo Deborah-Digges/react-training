@@ -22,8 +22,19 @@ Hint: Construct an Array of JSX elements
         <div id="root"></div>
         <script type="text/jsx">
             let cityNames = ["Chennai", "Mumbai", "Bangalore", "Pune"];
+
+            function getCitiesinJSX() {
+                var citiesInJSX = [];
+                
+                for(var i=0; i<cityNames.length; ++i) {
+                    citiesInJSX.push(<li key={cityNames[i]}>{cityNames[i]}</li>);
+                }
+                
+                return citiesInJSX;
+            }
+
             
-            let cityList = <ul>{ cityNames.map(function(listElement){ return <li key={listElement}>{listElement}</li> })}</ul>;
+            let cityList = <ul>{getCitiesinJSX()}</ul>;
             ReactDOM.render(cityList, document.getElementById("root"));
         </script>
     </body>
