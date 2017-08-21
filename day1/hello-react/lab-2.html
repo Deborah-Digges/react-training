@@ -1,0 +1,31 @@
+<!-- 
+Create Lab02.html file.
+You will display the following cities in a list.
+
+Chennai
+Mumbai
+Bengaluru
+Pune
+
+Now! You will store these cities in an array and display them as a list dynamically. :)
+
+Hint: Construct an Array of JSX elements
+-->
+
+<html>
+    <head>
+        <script src="../lib/babel.js"></script>
+        <script src="../lib/react.js"></script>
+        <script src="../lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/jsx">
+            let cityNames = ["Chennai", "Mumbai", "Bangalore", "Pune"];
+            
+            let cityList = <ul>{ cityNames.map(function(listElement){ return <li key={listElement}>{listElement}</li> })}</ul>;
+            ReactDOM.render(cityList, document.getElementById("root"));
+        </script>
+    </body>
+</html>
+
