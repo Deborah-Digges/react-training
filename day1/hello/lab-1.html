@@ -10,6 +10,15 @@
         <script src="../lib/babel.js"></script>
         <script src="../lib/react.js"></script>
         <script src="../lib/react-dom.js"></script>
+        <style type="text/css">
+            .correct {
+                color: green;
+            }
+            
+            .incorrect {
+                color: red;
+            }
+        </style>
     </head>
     <body>
         <div id="root"></div>
@@ -21,9 +30,10 @@
 
                 let message = "";
                 if(userName === "admin" && password === "admin") {
-                    message = <p style={{color: "green"}}>Successfully Logged in</p>;
+                    // Cannot use "class" as class is a keyword in JSX
+                    message = <p className="correct">Successfully Logged in</p>;
                 } else {
-                    message = <p style={{color: "red"}}>Invalid Credentials</p>;
+                    message = <p className="incorrect">Invalid Credentials</p>;
                 }
                 
                 ReactDOM.render(message, document.getElementById("root"));
