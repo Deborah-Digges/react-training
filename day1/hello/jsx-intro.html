@@ -11,6 +11,13 @@
         // JSX is java script xml which needs to be well formed
         // We need closing tags for every opening tag
         var tb = <input type="text"></input>
+            
+        // Only One root element is allowed
+        // Without the enclosing div this will fail
+        var textBoxes = <div>
+                <input type="text"></input>
+                <input type="text"></input>
+            </div>
         </script>
         
     </body>
