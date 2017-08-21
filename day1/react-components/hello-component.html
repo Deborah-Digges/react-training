@@ -1,0 +1,30 @@
+<!-- All react components are classes extending React.component class
+
+-->
+<html>
+    <head>
+        <script src="../lib/babel.js"></script>
+        <script src="../lib/react.js"></script>
+        <script src="../lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <div id="message"></div>
+        <script type="text/jsx">
+            class HelloWorld extends React.Component {
+                doSomething() {
+                    alert("Hey");
+                }
+                
+                render() {
+                    return (<div>
+                                <h1>Hello World</h1>
+                                <button type="button" onClick={this.doSomething}>Click me!!</button>
+                            </div>);
+                }
+            }
+
+            ReactDOM.render(<HelloWorld/>, document.getElementById("root"));
+        </script>
+    </body>
+</html>
