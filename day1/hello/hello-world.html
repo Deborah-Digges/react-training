@@ -4,4 +4,11 @@
         <script src="../lib/react.js"></script>
         <script src="../lib/react-dom.js"></script>
     </head>
+    <body>
+        <div id="message"></div>
+        <script type="text/jsx">
+            let hello = <h1>Hello React</h1>
+            ReactDOM.render(hello, document.getElementById("message"))
+        </script>
+    </body>
 </html>
