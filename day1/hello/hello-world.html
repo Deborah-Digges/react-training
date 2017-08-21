@@ -7,7 +7,14 @@
     <body>
         <div id="message"></div>
         <script type="text/jsx">
+            // This syntax is not valid javascript
+            // This is JSX - Javascript XML
+            // Create HTML elements and assign them to variables
+            // babel is a JavaScript transpiler:
+            // Takes non-JS syntax like JSX and converts it to valid JS
+            // which the browser can run
             let hello = <h1>Hello React</h1>
+            
             ReactDOM.render(hello, document.getElementById("message"))
         </script>
     </body>
