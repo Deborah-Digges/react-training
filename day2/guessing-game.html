@@ -67,7 +67,7 @@
                     let attempts = this.state.game.attemptList;
                     let attemptsRows = [];
                     for(var i=0; i<attempts.length; ++i) {
-                        attemptsRows.push(<tr><td>{attempts[i].attemptNo}</td><td>{attempts[i].attemptVal}</td></tr>);
+                        attemptsRows.push(<tr key={i}><td>{attempts[i].attemptNo}</td><td>{attempts[i].attemptVal}</td></tr>);
                     }
                     return (
                         <table>
