@@ -1,7 +1,7 @@
 <!-- Every component has a state-->
 <!-- On clicking the button, display something in the h1 tag -->
 <!-- state is a js object 
-Every time the state is changed, the UI is refereshed
+Every time the state is changed, the UI is refereshed => Render method gets called
 -->
 
 
@@ -27,6 +27,11 @@ Every time the state is changed, the UI is refereshed
                 buttonClicked() {
                     let name = this.nameTB.value;
                     let msg = `Hi ${name}`;
+                    // Virtual DOM is re-rendered for this component only
+                    // This is updated in the virtual DOM not the real DOM
+                    // Real DOM only gets updated if something has changed
+                    // calling this.state.message = val will not cause rerendering
+                    
                     this.setState({
                        message: msg
                     });
@@ -34,6 +39,7 @@ Every time the state is changed, the UI is refereshed
                 }
                 
                 render() {
+                    console.log("RENDER");
                     return (
                         <div>
                             <input type="text" ref={tb => this.nameTB = tb}></input>
