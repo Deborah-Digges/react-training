@@ -1,0 +1,51 @@
+<!-- 
+After render method, componentDidMount is called
+componentDidMount is called only once when the component is first loaded. render is called repeatedly
+
+In this method, after the user sees some UI, we can send an AJAX request to the server to fetch some data
+-->
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/jsx">
+            class Main extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                      message: ""  
+                    };
+                    this.buttonClicked = this.buttonClicked.bind(this);
+                }
+                
+                buttonClicked() {
+                    let name = this.nameTB.value;
+                    this.setState({
+                       message: `Hi ${name}` 
+                    });
+                }
+                
+                componentDidMount() {
+                    console.log("Component Did Mount");
+                }
+                
+                render() {
+                    console.log("Render");
+                    return (
+                        <div>
+                            <input type="text" ref={ip => this.nameTB = ip}></input>
+                            <button type="button" onClick={this.buttonClicked}>Click</button>
+                            <h1>{this.state.message}</h1>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<Main/>, document.getElementById("root"));
+        </script>
+    </body>
+</html>
