@@ -10,20 +10,14 @@
         <div id="root"></div>
 
         <script type="text/jsx">
-            class GuessingGame extends React.Component {
-                constructor(props) {
-                    super(props);
-                    this.state = {
-                        message: "",
-                        attempts: 0
-                    };
-                    // Generate a random number between 1 and 100
+            class Game {
+                constructor() {
+                    this.attempts = 0;
+                    this.message = "";
                     this.randomGeneratedValue = Math.floor((Math.random() * 100) + 1);
-                    this.checkAgainstRandomValue = this.checkAgainstRandomValue.bind(this);
                 }
                 
-                checkAgainstRandomValue() {
-                    let guess = parseInt(this.guessTextBox.value);
+                play(guess) {
                     let msg = "";
                     if(guess == this.randomGeneratedValue) {
                        msg =  "Congratulations! You've guessed it right";
@@ -32,24 +26,45 @@
                     } else {
                         msg = "Try Guessing a lower number";
                     }
+                    this.message = msg
+                    this.attempts= this.attempts + 1
+                }
+            }
+
+            class GuessingComponent extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        game: new Game(),
+                        message: ""
+                    };
+                    // Generate a random number between 1 and 100
+                    
+                    this.onButtonClick = this.onButtonClick.bind(this);
+                }
+                
+                onButtonClick() {
+                    let guess = this.guessTextBox.value;
+                    let game = this.state.game;
+                    game.play(guess);
                     this.setState({
-                       message: msg,
-                       attempts: this.state.attempts + 1
+                       message: game.message 
                     });
                 }
+                
                 
                 render() {
                     return (
                         <div>
                             <input type="text" placeholder="Guess" ref={input => this.guessTextBox = input}></input>
-                            <button type="button" onClick={this.checkAgainstRandomValue}>Play!</button>
+                            <button type="button" onClick={this.onButtonClick}>Play!</button>
                             <h1>{this.state.message}</h1>
-                            <h1>{"Attempts: " + this.state.attempts}</h1>
+                            <h1>{"Attempts: " + this.state.game.attempts}</h1>
                         </div>
                     );
                 }
             }
-            ReactDOM.render(<GuessingGame/>, document.getElementById("root"));
+            ReactDOM.render(<GuessingComponent/>, document.getElementById("root"));
         </script>
     </body>
 </html>
