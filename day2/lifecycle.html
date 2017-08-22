@@ -3,6 +3,8 @@ After render method, componentDidMount is called
 componentDidMount is called only once when the component is first loaded. render is called repeatedly
 
 In this method, after the user sees some UI, we can send an AJAX request to the server to fetch some data
+
+componentDidUpdate is called whenever the virtual DOM is updated
 -->
 <html>
     <head>
@@ -39,6 +41,12 @@ In this method, after the user sees some UI, we can send an AJAX request to the 
                            message: "Data to be shown" 
                         });
                     }, 3000);
+                }
+                
+                componentDidUpdate() {
+                    // Called whenever virtual DOM is updated
+                    // Called AFTER render is called
+                    console.log("Component Did Update");
                 }
                 
                 render() {
