@@ -30,13 +30,14 @@ Every time the state is changed, the UI is refereshed
                     this.setState({
                        message: msg
                     });
+                    this.clickBtn.disabled = true;
                 }
                 
                 render() {
                     return (
                         <div>
                             <input type="text" ref={tb => this.nameTB = tb}></input>
-                            <button type="button" onClick={this.buttonClicked}>Click</button>
+                            <button type="button" ref={btn => this.clickBtn = btn} onClick={this.buttonClicked}>Click</button>
                             <h1>{this.state.message}</h1>
                         </div>
                     );
