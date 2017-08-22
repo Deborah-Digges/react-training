@@ -1,0 +1,36 @@
+<!--- Design a page using react components-->
+
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="header"></div>
+        <div id="main"></div>
+        <div id="footer"></div>
+        <script type="text/jsx">
+            class Header extends React.Component {
+                render() {
+                    return <h1>Welcome to TamilNadu</h1>;
+                }
+            }
+
+            class Main extends React.Component {
+                render() {
+                    return <h1>Hi!</h1>;
+                }
+            }
+
+            class Footer extends React.Component {
+                render() {
+                    return <p>Copyrights reserved, 2017</p>;
+                }
+            }
+            ReactDOM.render(<Header/>, document.getElementById("header"));
+            ReactDOM.render(<Main/>, document.getElementById("main"));
+            ReactDOM.render(<Footer/>, document.getElementById("footer"));
+        </script>
+    </body>
+</html>
