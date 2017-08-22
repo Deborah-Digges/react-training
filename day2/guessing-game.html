@@ -1,0 +1,52 @@
+<!-- https://github.com/prabhu-durasoft/Aug-21-23-2017/blob/master/Day02/Lab1.adoc -->
+
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/jsx">
+            class GuessingGame extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        message: ""
+                    };
+                    // Generate a random number between 1 and 100
+                    this.randomGeneratedValue = Math.floor((Math.random() * 100) + 1);
+                    this.checkAgainstRandomValue = this.checkAgainstRandomValue.bind(this);
+                }
+                
+                checkAgainstRandomValue() {
+                    let guess = parseInt(this.guessTextBox.value);
+                    let msg = "";
+                    if(guess == this.randomGeneratedValue) {
+                       msg =  "Congratulations! You've guessed it right";
+                    } else if(guess < this.randomGeneratedValue) {
+                        msg = "Try Guessing a higher number";
+                    } else {
+                        msg = "Try Guessing a lower number";
+                    }
+                    this.setState({
+                       message: msg 
+                    });
+                }
+                
+                render() {
+                    return (
+                        <div>
+                            <input type="text" placeholder="Guess" ref={input => this.guessTextBox = input}></input>
+                            <button type="button" onClick={this.checkAgainstRandomValue}>Play!</button>
+                            <h1>{this.state.message}</h1>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<GuessingGame/>, document.getElementById("root"));
+        </script>
+    </body>
+</html>
