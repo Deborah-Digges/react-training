@@ -10,24 +10,35 @@
         <div id="root"></div>
 
         <script type="text/jsx">
+            class Attempt{
+                constructor(attemptNo, attemptVal) {
+                    this.attemptNo = attemptNo;
+                    this.attemptVal = attemptVal;
+                }
+            }
+
             class Game {
                 constructor() {
                     this.attempts = 0;
                     this.message = "";
                     this.randomGeneratedValue = Math.floor((Math.random() * 100) + 1);
+                    this.attemptList = [];
+                    this.gameOver = false;
                 }
                 
                 play(guess) {
                     let msg = "";
                     if(guess == this.randomGeneratedValue) {
-                       msg =  "Congratulations! You've guessed it right";
+                        msg =  "Congratulations! You've guessed it right";
+                        this.gameOver = true;
                     } else if(guess < this.randomGeneratedValue) {
                         msg = "Try Guessing a higher number";
                     } else {
                         msg = "Try Guessing a lower number";
                     }
                     this.message = msg
-                    this.attempts= this.attempts + 1
+                    this.attempts = this.attempts + 1
+                    this.attemptList.push(new Attempt(this.attempts, guess))
                 }
             }
 
@@ -52,6 +63,21 @@
                     });
                 }
                 
+                getAttemptsTable() {
+                    let attempts = this.state.game.attemptList;
+                    let attemptsRows = [];
+                    for(var i=0; i<attempts.length; ++i) {
+                        attemptsRows.push(<tr><td>{attempts[i].attemptNo}</td><td>{attempts[i].attemptVal}</td></tr>);
+                    }
+                    return (
+                        <table>
+                            <tbody>
+                                <tr><th>Attempt Number</th><th>Attempt Value</th></tr>
+                                {attemptsRows}
+                            </tbody>
+                        </table>
+                    );
+                }
                 
                 render() {
                     return (
@@ -60,6 +86,10 @@
                             <button type="button" onClick={this.onButtonClick}>Play!</button>
                             <h1>{this.state.message}</h1>
                             <h1>{"Attempts: " + this.state.game.attempts}</h1>
+                            
+                            { this.state.game.gameOver && this.getAttemptsTable()
+                                
+                            }
                         </div>
                     );
                 }
