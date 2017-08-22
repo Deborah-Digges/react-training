@@ -1,0 +1,43 @@
+<!-- Every component has a state-->
+<!-- On clicking the button, display something in the h1 tag -->
+<!-- state is a js object 
+Every time the state is changed, the UI is refereshed
+-->
+
+
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/jsx">
+            class Main extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        message: "Hey! Please enter your name"
+                    }
+                }
+                
+                buttonClicked() {
+                    console.log("clicked");
+                }
+                
+                render() {
+                    return (
+                        <div>
+                            <input type="text"></input>
+                            <button type="button" onClick={this.buttonClicked}>Click</button>
+                            <h1>{this.state.message}</h1>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<Main/>, document.getElementById("root"));
+        </script>
+    </body>
+</html>
