@@ -45,6 +45,10 @@ If the input is the same, no need to keep rendering the virtual DOM every time. 
                     }, 3000);
                 }
                 
+                shouldComponentUpdate() {
+                    // determines whether you want to update or not
+                }
+                
                 componentDidUpdate() {
                     // Called whenever virtual DOM is updated
                     // Called AFTER render is called

@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/jsx">
+            class Main extends React.Component {
+                constructor(props) {
+                    super(props)
+                    this.countryList = ["India", "US", "UK"];
+                    this.stateMap = {   "India": ["Pune", "Chennai", "Kochi"],
+                                        "US": ["NJ", "NY", "Houston"],
+                                        "UK": ["London", "Bristol", "Hampshire"]
+                                    }
+                    this.state = {
+                        countrySelected: ""
+                    }
+                    this.countryChanged = this.countryChanged.bind(this);
+                    this.clearButtonClicked = this.clearButtonClicked.bind(this);
+                        
+                }
+                
+                getJSXCountryList() {
+                    var jsxOptions = [<option key="select" value="select">select</option>];
+                    for(var i=0; i<this.countryList.length; ++i) {
+                        jsxOptions.push(<option key={this.countryList[i]} value={this.countryList[i]}>{this.countryList[i]}</option>)
+                    }
+                    
+                    return jsxOptions;
+                }
+                
+                getCities() {
+                    let country = this.state.countrySelected;
+                    let stateList = this.stateMap[country];
+                    if(stateList === undefined) {
+                        return [];
+                    }
+                    
+                    let statesJSX = []
+                    for(var i=0; i<stateList.length; ++i) {
+                        statesJSX.push(<option key={stateList[i]} value={stateList[i]}>{stateList[i]}</option>)
+                    }
+                    return statesJSX;
+                }
+                
+                countryChanged(e) {
+                    let countrySelected = e.target.value;
+                    this.setState({
+                       countrySelected
+                    });
+                }
+                
+                clearButtonClicked() {
+                    this.setState({
+                       countrySelected: "select" 
+                    });
+                    this.countrySelector.value = "select";
+                }
+                
+                render() {
+                    return(
+                        <div>
+                            <label>Country</label>
+                            <select onChange={this.countryChanged} ref={sel => this.countrySelector = sel}>
+                                {this.getJSXCountryList()}
+                            </select>
+                            <br></br>
+                            <label>City</label>
+                            <select >
+                                {this.getCities()}
+                            </select> 
+                            <button type="button" onClick={this.clearButtonClicked}>CLEAR</button>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<Main/>, document.getElementById("root"));
+        </script>
+    </body>
+</html>
