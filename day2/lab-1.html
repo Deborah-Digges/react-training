@@ -7,9 +7,8 @@
         <script src="lib/react-dom.js"></script>
     </head>
     <body>
-        <div id="header"></div>
-        <div id="main"></div>
-        <div id="footer"></div>
+        <div id="root"></div>
+
         <script type="text/jsx">
             class Header extends React.Component {
                 render() {
@@ -17,20 +16,24 @@
                 }
             }
 
-            class Main extends React.Component {
+            class Footer extends React.Component {
                 render() {
-                    return <h1>Hi!</h1>;
+                    return <h1>Copyrights reserved, 2017</h1>;
                 }
             }
 
-            class Footer extends React.Component {
+            class Main extends React.Component {
                 render() {
-                    return <p>Copyrights reserved, 2017</p>;
+                    // One main component composed of subcomponents
+                    return (
+                        <div>
+                            <Header/>
+                            <p>Hi!</p>
+                            <Footer/>
+                        </div>);
                 }
             }
-            ReactDOM.render(<Header/>, document.getElementById("header"));
-            ReactDOM.render(<Main/>, document.getElementById("main"));
-            ReactDOM.render(<Footer/>, document.getElementById("footer"));
+            ReactDOM.render(<Main/>, document.getElementById("root"));
         </script>
     </body>
 </html>
