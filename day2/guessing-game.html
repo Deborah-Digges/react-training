@@ -41,6 +41,7 @@
                     if(guess == this.randomGeneratedValue) {
                         msg =  "Congratulations! You've guessed it right";
                         this.gameOver = true;
+                        this.currentInstruction = "OVER";
                     } else if(guess < this.randomGeneratedValue) {
                         msg = "Try Guessing a higher number";
                         this.currentInstruction = "HIGHER";
