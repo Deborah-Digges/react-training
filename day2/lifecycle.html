@@ -5,6 +5,8 @@ componentDidMount is called only once when the component is first loaded. render
 In this method, after the user sees some UI, we can send an AJAX request to the server to fetch some data
 
 componentDidUpdate is called whenever the virtual DOM is updated
+
+If the input is the same, no need to keep rendering the virtual DOM every time. Use shouldComponentUpdate for this
 -->
 <html>
     <head>
