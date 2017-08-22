@@ -39,6 +39,7 @@ Every time the state is changed, the UI is refereshed => Render method gets call
                 }
                 
                 render() {
+                    // Never change a state inside render as it will cause infinite recursion
                     console.log("RENDER");
                     return (
                         <div>
