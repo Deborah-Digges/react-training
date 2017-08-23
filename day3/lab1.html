@@ -70,6 +70,9 @@
                     this.state = {
                         
                     }
+                    this.removePeople = this.removePeople.bind(this);
+                    this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
+                    this.namesToRemove = [];
                 }
                 
                 getPeopleRows() {
@@ -85,7 +88,7 @@
                             <tr key={people[i].name}>
                                 <td>{people[i].name}</td>
                                 <td>{people[i].age}</td>
-                                <td><input type="checkbox"></input></td>
+                                <td><input type="checkbox" onChange={this.handleCheckBoxChange} name={people[i].name}></input></td>
                             </tr>
                         );
                     }
@@ -94,15 +97,23 @@
                     
                 }
                 
+                handleCheckBoxChange(event) {
+                    this.namesToRemove.push(event.target.attributes.name.nodeValue);
+                }
+                
+                removePeople() {
+                    this.props.removePeople(this.namesToRemove);
+                }
+                
                 render() {
                     return(
                         <div>
-                            <table>
+                            <table ref={table => this.peopleTable = table}>
                                 <tbody>
                                     {this.getPeopleRows()}
                                 </tbody>
                             </table>
-                            {this.props.people.length > 0 && <button type="button">Remove</button>}
+                            {this.props.people.length > 0 && <button type="button" onClick={this.removePeople}>Remove</button>}
                         </div>
                     );
                 }
@@ -115,6 +126,20 @@
                         people: []
                     }
                     this.addPerson = this.addPerson.bind(this);
+                    this.removePeople = this.removePeople.bind(this);
+                }
+                
+                removePeople(peopleNames) {
+                    let newList = [];
+                    for(var i=0; i<this.state.people; ++i) {
+                        if(peopleNames[i] !== this.state.people[i].name) {
+                            newList.push(this.state.people[i]);
+                        }
+                    }
+                    
+                    this.setState({
+                       people: newList 
+                    });
                 }
                 
                 addPerson(person) {
@@ -129,7 +154,7 @@
                         <div>
                             <InputForm people={this.state.people} addPerson={this.addPerson}/>
                             <hr></hr>
-                            <Output people={this.state.people}/>
+                            <Output people={this.state.people} removePeople={this.removePeople}/>
                         </div>
                     );
                 }
