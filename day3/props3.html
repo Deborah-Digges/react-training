@@ -14,11 +14,13 @@
                     this.buttonClicked = this.buttonClicked.bind(this)
                 }
                 buttonClicked(){
+                    console.log("BUTTON CLICKED")
                     let name = this.nameTB.value.trim()
                     let message = `Hey ${name}!`
                     this.props.handler(message);
                 }
                 render(){
+                    console.log("INPUT RENDER");
                     return (<div>
                         <input type="text" ref={ip => this.nameTB = ip}></input>
                         <button type="button" onClick={this.buttonClicked}>Click</button>    
@@ -30,6 +32,7 @@
                     super(props)
                 }
                 render(){
+                    console.log("OUTPUT RENDER");
                     return (
                         <h1>{this.props.message}</h1>
                     )
@@ -45,6 +48,8 @@
                 }
                 
                 processMessage(message) {
+                    console.log(this);
+                    console.log("PROCESS MESSAGE")
                     // when this.setState of the parent is called
                     // The parent render is called
                     // This in turn calls the child render method
@@ -54,6 +59,7 @@
                 }
                 
                 render() {
+                    console.log("MAIN RENDER");
                     return (
                         <div>
                             <InputForm handler={this.processMessage} />
