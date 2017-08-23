@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div><hr/>
+        <div id="root2"></div>
+        <script type="text/jsx">
+            class Main extends React.Component{
+                constructor(props){
+                    super(props)
+                    console.log(this.props)
+                }
+                render(){
+                    return (
+                        <div>
+                            <h1>{this.props.greet}</h1>
+                            <h2>{this.props.message}</h2>
+                        </div>
+                    )
+                }
+            }
+        ReactDOM.render(<Main message="Hello Sam" greet="Hey"/>,document.getElementById("root"))
+        
+    ReactDOM.render(<Main message="Good morning" greet="Hi"/>,document.getElementById("root2"))
+        </script>
+    </body>
+</html>    

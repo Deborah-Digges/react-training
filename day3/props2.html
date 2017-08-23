@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <div id="root2"></div>
+        <script type="text/jsx">
+            class InputForm extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.buttonClicked = this.buttonClicked.bind(this)
+                }
+                buttonClicked(){
+                    let name = this.nameTB.value.trim()
+                    let message = `Hey ${name}!`
+                    ReactDOM.render(<Output message={message}/>,document.getElementById("root2"))
+                }
+                render(){
+                    return (<div>
+                        <input type="text" ref={ip => this.nameTB = ip}></input>
+                        <button type="button" onClick={this.buttonClicked}>Click</button>    
+                    </div>)
+                }
+            }
+            class Output extends React.Component{
+                constructor(props){
+                    super(props)
+                }
+                render(){
+                    return (
+                        <h1>{this.props.message}</h1>
+                    )
+                }
+            }
+        ReactDOM.render(<InputForm/>,document.getElementById("root"))
+        </script>
+    </body>
+</html>    
