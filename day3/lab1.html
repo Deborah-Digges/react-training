@@ -103,11 +103,12 @@
                     } else if(this.namesToRemove.indexOf(key) !== -1) {
                         this.namesToRemove =  this.namesToRemove.filter(item => item !== key)
                     }
-                    
+                    console.log(this.namesToRemove);
                 }
                 
                 removePeople() {
                     this.props.removePeople(this.namesToRemove);
+                    this.namesToRemove = [];
                 }
                 
                 render() {
