@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/jsx">
+            class InputForm extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        
+                    }
+                }
+                
+                render() {
+                    return(
+                        <div>Input</div>
+                    );
+                }
+            }
+
+            class Output extends React.Component {
+               constructor(props) {
+                    super(props);
+                    this.state = {
+                        
+                    }
+                }
+                
+                render() {
+                    return(
+                        <div>Output</div>
+                    );
+                }
+            }
+
+            class Main extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        
+                    }
+                }
+                
+                render() {
+                    return(
+                        <div>
+                            <InputForm/>
+                            <Output/>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<Main/>, document.getElementById("root"));
+        </script>
+    </body>
+</html>
