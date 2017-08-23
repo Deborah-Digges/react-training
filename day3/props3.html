@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <script src="lib/babel.js"></script>
+        <script src="lib/react.js"></script>
+        <script src="lib/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/jsx">
+            class InputForm extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.buttonClicked = this.buttonClicked.bind(this)
+                }
+                buttonClicked(){
+                    let name = this.nameTB.value.trim()
+                    let message = `Hey ${name}!`
+                    this.props.handler(message);
+                }
+                render(){
+                    return (<div>
+                        <input type="text" ref={ip => this.nameTB = ip}></input>
+                        <button type="button" onClick={this.buttonClicked}>Click</button>    
+                    </div>)
+                }
+            }
+            class Output extends React.Component{
+                constructor(props){
+                    super(props)
+                }
+                render(){
+                    return (
+                        <h1>{this.props.message}</h1>
+                    )
+                }
+            }
+            class Main extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                      message: ""  
+                    };
+                    this.processMessage = this.processMessage.bind(this);
+                }
+                
+                processMessage(message) {
+                    // when this.setState of the parent is called
+                    // The parent render is called
+                    // This in turn calls the child render method
+                    this.setState({
+                        message
+                    });     
+                }
+                
+                render() {
+                    return (
+                        <div>
+                            <InputForm handler={this.processMessage} />
+                            <Output message={this.state.message}/>
+                        </div>
+                    );
+                }
+            }
+
+            ReactDOM.render(<Main/>,document.getElementById("root"))
+        </script>
+    </body>
+</html>    
