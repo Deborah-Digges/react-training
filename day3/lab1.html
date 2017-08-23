@@ -129,10 +129,12 @@
                     this.removePeople = this.removePeople.bind(this);
                 }
                 
-                removePeople(peopleNames) {
+                removePeople(peopleNamesToRemove) {
+                    peopleNamesToRemove = new Set(peopleNamesToRemove);
                     let newList = [];
-                    for(var i=0; i<this.state.people; ++i) {
-                        if(peopleNames[i] !== this.state.people[i].name) {
+                    for(var i=0; i<this.state.people.length; ++i) {
+                        // Only keep those names which are not to be removed
+                        if(!peopleNamesToRemove.has(this.state.people[i].name)) {
                             newList.push(this.state.people[i]);
                         }
                     }
