@@ -11,7 +11,7 @@
                 constructor(props) {
                     super(props);
                     this.state = {
-                        
+                        message: ""
                     }
                     this.addPerson = this.addPerson.bind(this);
                 }
@@ -33,25 +33,32 @@
                     let name = this.nameTB.value;
                     let age = parseInt(this.ageTB.value);
                     let addPersonCallback = this.props.addPerson;
-                    
+                    let message = "";
                     if(this.doesPersonExist(name)) {
-                        console.log("Person exists");
+                        message = "Person already exists";
                     } else {
+                        message = ""
                         addPersonCallback({name, age});
                     }
+                    this.setState({
+                        message
+                    });
                     
                 }
                 
                 render() {
                     return(
                         <div>
-                            <input type="text" placeholder="Name"
-                                ref={ip => this.nameTB = ip}
-                                ></input>
-                            <input type="text" placeholder="Age"
-                                ref={ip => this.ageTB = ip}
-                                ></input>
-                            <button type="button" onClick={this.addPerson}>Add Person</button>
+                            <div>
+                                <input type="text" placeholder="Name"
+                                    ref={ip => this.nameTB = ip}
+                                    ></input>
+                                <input type="text" placeholder="Age"
+                                    ref={ip => this.ageTB = ip}
+                                    ></input>
+                                <button type="button" onClick={this.addPerson}>Add Person</button>
+                            </div>
+                            <div>{this.state.message}</div>
                         </div>
                     );
                 }
