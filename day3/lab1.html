@@ -75,7 +75,11 @@
                     
                     for(var i=0; i<people.length; ++i) {
                         peopleJSXRows.push(
-                            <tr key={people[i].name}><td>{people[i].name}</td><td>{people[i].age}</td></tr>
+                            <tr key={people[i].name}>
+                                <td>{people[i].name}</td>
+                                <td>{people[i].age}</td>
+                                <td><input type="checkbox"></input></td>
+                            </tr>
                         );
                     }
                     
@@ -85,11 +89,14 @@
                 
                 render() {
                     return(
-                        <table>
-                            <tbody>
-                                {this.getPeopleRows()}
-                            </tbody>
-                        </table>
+                        <div>
+                            <table>
+                                <tbody>
+                                    {this.getPeopleRows()}
+                                </tbody>
+                            </table>
+                            {this.props.people.length > 0 && <button type="button">Remove</button>}
+                        </div>
                     );
                 }
             }
