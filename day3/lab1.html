@@ -13,11 +13,46 @@
                     this.state = {
                         
                     }
+                    this.addPerson = this.addPerson.bind(this);
+                }
+                
+                doesPersonExist(personName) {
+                    let people = this.props.people;
+                    
+                    for(var i=0; i<people.length; ++i) {
+                        if(people[i].name === personName) {
+                            return true;
+                        }
+                    }
+                    return false;
+                        
+                }
+                
+                addPerson() {
+                    let people = this.props.people;
+                    let name = this.nameTB.value;
+                    let age = parseInt(this.ageTB.value);
+                    let addPersonCallback = this.props.addPerson;
+                    
+                    if(this.doesPersonExist(name)) {
+                        console.log("Person exists");
+                    } else {
+                        addPersonCallback({name, age});
+                    }
+                    
                 }
                 
                 render() {
                     return(
-                        <div>Input</div>
+                        <div>
+                            <input type="text" placeholder="Name"
+                                ref={ip => this.nameTB = ip}
+                                ></input>
+                            <input type="text" placeholder="Age"
+                                ref={ip => this.ageTB = ip}
+                                ></input>
+                            <button type="button" onClick={this.addPerson}>Add Person</button>
+                        </div>
                     );
                 }
             }
@@ -30,9 +65,31 @@
                     }
                 }
                 
+                getPeopleRows() {
+                    let people = this.props.people;
+                    if(people === undefined || people.length === 0) {
+                        return [];
+                    }
+                    
+                    let peopleJSXRows = [<tr key={"header"}><th>Name</th><th>Age</th></tr>];
+                    
+                    for(var i=0; i<people.length; ++i) {
+                        peopleJSXRows.push(
+                            <tr key={people[i].name}><td>{people[i].name}</td><td>{people[i].age}</td></tr>
+                        );
+                    }
+                    
+                    return peopleJSXRows;
+                    
+                }
+                
                 render() {
                     return(
-                        <div>Output</div>
+                        <table>
+                            <tbody>
+                                {this.getPeopleRows()}
+                            </tbody>
+                        </table>
                     );
                 }
             }
@@ -41,15 +98,24 @@
                 constructor(props) {
                     super(props);
                     this.state = {
-                        
+                        people: []
                     }
+                    this.addPerson = this.addPerson.bind(this);
+                }
+                
+                addPerson(person) {
+                    this.state.people.push(person)
+                    this.setState({
+                       people: this.state.people
+                    });    
                 }
                 
                 render() {
                     return(
                         <div>
-                            <InputForm/>
-                            <Output/>
+                            <InputForm people={this.state.people} addPerson={this.addPerson}/>
+                            <hr></hr>
+                            <Output people={this.state.people}/>
                         </div>
                     );
                 }
