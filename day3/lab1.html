@@ -88,7 +88,7 @@
                             <tr key={people[i].name}>
                                 <td>{people[i].name}</td>
                                 <td>{people[i].age}</td>
-                                <td><input type="checkbox" onChange={this.handleCheckBoxChange} name={people[i].name}></input></td>
+                                <td><input type="checkbox" onChange={this.handleCheckBoxChange.bind(this, people[i].name)} name={people[i].name}></input></td>
                             </tr>
                         );
                     }
@@ -97,8 +97,13 @@
                     
                 }
                 
-                handleCheckBoxChange(event) {
-                    this.namesToRemove.push(event.target.attributes.name.nodeValue);
+                handleCheckBoxChange(key, event) {
+                    if(event.target.checked){
+                        this.namesToRemove.push(key);    
+                    } else if(this.namesToRemove.indexOf(key) !== -1) {
+                        this.namesToRemove =  this.namesToRemove.filter(item => item !== key)
+                    }
+                    
                 }
                 
                 removePeople() {
